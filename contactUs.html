@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>צור קשר - Sweet Symphony</title>
+    <meta name="description" content="צרו קשר עם Sweet Symphony - נשמח לשמוע מכם ולענות על כל שאלה. השאירו פרטים ונחזור אליכם בהקדם.">
+    <meta name="keywords" content="צור קשר, Sweet Symphony, קשר, טופס פנייה">
+    <link rel="stylesheet" href="styles/myStyle.css">
+    <link rel="icon" href="images/favicon.jpg" type="image/png">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="images/logo.png" alt="Sweet Symphony Logo" class="logo">
+        </a>
+        
+        <nav aria-label="main navigation">
+            <ul>
+                <li><a href="index.html">בית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="confectionery_history.html">היסטוריה</a></li>
+                <li><a href="confectionery_workshops.html">סדנאות</a></li>
+                <li><a href="contactUs.html">צור קשר</a></li>
+                <li><a href="siteMap.html">מפת אתר</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>צור קשר</h1>
+    <!-- תפריט פרורי לחם -->
+    <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+        <a href="index.html">בית</a> &gt; <a href="contactUs.html">צור קשר</a>
+    </nav>
+
+    <main>
+        <section class="contact-section">
+            <h2>
+                "כל חלומותינו יכולים להתגשם אם יהיה בנו האומץ לחתור להגשמתם"
+           
+            </h2>
+            <p>נשמח לשמוע מכם! מלאו את הפרטים הבאים ונחזור אליכם בהקדם.</p>
+            
+            <!-- הודעת חיווי -->
+            <p id="confirmationMessage">ההודעה נשלחה בהצלחה! נחזור אליכם בהקדם.</p>
+
+            <form id="contactForm">
+                <label for="fullName">שם מלא <span style="color: red;">*</span>:</label>
+                <input type="text" id="fullName" name="fullName">
+                <span class="error" id="nameError">זהו שדה חובה.</span>
+
+                <label for="email">אימייל <span style="color: red;">*</span>:</label>
+                <input type="email" id="email" name="email">
+                <span class="error" id="emailError">זהו שדה חובה.</span>
+
+                <label for="phone">טלפון <span style="color: red;">*</span>:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}">
+                <span class="error" id="phoneError">זהו שדה חובה.</span>
+
+                <label for="contactReason">סוג הפנייה:</label>
+                <select id="contactReason" name="contactReason">
+                    <option value="general">שאלה כללית</option>
+                    <option value="workshop">פרטים על סדנאות</option>
+                    <option value="order">הזמנת מוצרים</option>
+                    <option value="feedback">פידבק והצעות</option>
+                </select>
+
+                <label for="message">הודעה <span style="color: red;">*</span>:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+                <span class="error" id="messageError">זהו שדה חובה.</span>
+
+                <button type="submit">שלח</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <nav aria-label="footer navigation">
+            <ul>
+                <li><a href="index.html">בית</a></li>
+                <li><a href="about.html">אודות</a></li>
+                <li><a href="confectionery_history.html">היסטוריה</a></li>
+                <li><a href="confectionery_workshops.html">סדנאות</a></li>
+                <li><a href="contactUs.html">צור קשר</a></li>
+                <li><a href="siteMap.html">מפת אתר</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // מונע שליחה אוטומטית של הטופס
+            let isValid = true;
+
+            // בדיקה של שדה השם
+            const fullName = document.getElementById("fullName");
+            const nameError = document.getElementById("nameError");
+            if (fullName.value.trim() === "") {
+                nameError.style.display = "inline";
+                isValid = false;
+            } else {
+                nameError.style.display = "none";
+            }
+
+            // בדיקה של שדה האימייל
+            const email = document.getElementById("email");
+            const emailError = document.getElementById("emailError");
+            if (email.value.trim() === "" || !email.checkValidity()) {
+                emailError.style.display = "inline";
+                isValid = false;
+            } else {
+                emailError.style.display = "none";
+            }
+
+            // בדיקה של שדה הטלפון
+            const phone = document.getElementById("phone");
+            const phoneError = document.getElementById("phoneError");
+            if (phone.value.trim() === "" || !phone.checkValidity()) {
+                phoneError.style.display = "inline";
+                isValid = false;
+            } else {
+                phoneError.style.display = "none";
+            }
+
+            // בדיקה של שדה ההודעה
+            const message = document.getElementById("message");
+            const messageError = document.getElementById("messageError");
+            if (message.value.trim() === "") {
+                messageError.style.display = "inline";
+                isValid = false;
+            } else {
+                messageError.style.display = "none";
+            }
+
+            // אם כל השדות תקינים, הצגת הודעת הצלחה
+            if (isValid) {
+                document.getElementById("confirmationMessage").style.display = "block";
+                document.getElementById("contactForm").reset();
+            }
+        });
+    </script>
+</body>
+</html>
